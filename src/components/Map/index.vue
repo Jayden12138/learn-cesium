@@ -1,27 +1,26 @@
 <template>
-    <div class="map_container">
-        <div id="cesium_container"></div>
-    </div>
+	<div id="cesium_container"></div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { Terrain, Viewer, Ion } from 'cesium'
-import 'cesium/Build/Cesium/Widgets/widgets.css'
+import { onMounted } from 'vue';
+import ViewerManager from '@/utils/viewerManager';
+
+const initMap = () => {
+	const viewer = ViewerManager.initialize('cesium_container');
+
+	viewer.scene.debugShowFramesPerSecond = true; // 帧率显示
+};
 
 onMounted(() => {
-    Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_ACCESS_TOKEN
-
-    new Viewer('cesium_container', {
-        terrain: Terrain.fromWorldTerrain()
-    })
-})
+	initMap();
+});
 </script>
 
 <style scoped>
 #cesium_container {
-    background: gray;
-    height: 100vh;
-    width: 100%;
+	background: gray;
+	height: 100vh;
+	width: 100%;
 }
 </style>
