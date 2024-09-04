@@ -5,6 +5,7 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import ViewerManager from '@/utils/viewerManager';
+import { getFakeData } from '@/api/fakeapi';
 
 const initMap = () => {
 	const viewer = ViewerManager.initialize('cesium_container');
@@ -14,6 +15,9 @@ const initMap = () => {
 
 onMounted(() => {
 	initMap();
+
+	// TODO: 删除fake数据
+	getFakeData();
 });
 </script>
 

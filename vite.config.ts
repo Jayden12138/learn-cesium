@@ -9,6 +9,15 @@ const cesiumBaseUrl = 'cesiumStatic';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	server: {
+		proxy: {
+			'/fake': {
+				target: 'https://jsonplaceholder.typicode.com/',
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/fake/, ''),
+			},
+		},
+	},
 	resolve: {
 		alias: {
 			'@/': `${path.resolve(__dirname, 'src')}/`,
